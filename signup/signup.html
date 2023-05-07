@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SignUp</title>
+    <link rel="stylesheet" href="1.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="nav.css">
+    <style>
+      body {
+          background-color: #f2f2f2;
+          font-family: Arial, sans-serif;
+      }
+
+      .submit-btn {
+          width: 150px;
+          background-color: #77a88d;
+          color: #f2f2f2;
+          padding: 12px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          text-align: center;
+          margin-top: 20px;
+      }
+
+      .container {
+          max-width: 1000px;
+          margin: 0 auto;
+          background-color: var(--container-background-color);
+          padding: 40px;
+          border-radius: 0px;
+          text-align: center;
+          display: flex;
+          justify-content: space-between;
+      }
+
+      .left-side {
+          display: flex;
+          flex-direction: column;
+          align-items: center; 
+      }
+
+      .logo {
+          margin-bottom: 30px;
+          max-width: 400px;
+          height: auto;
+          animation: fadeIn 1s ease-in-out forwards;
+      }
+
+      @keyframes fadeIn {
+          0% {
+              opacity: 0;
+          }
+
+          100% {
+              opacity: 1;
+          }
+      }
+
+      .signup-form input[type="text"],
+      .signup-form input[type="password"],
+      .signup-form input[type="email"] {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          border: 1px solid #000000;
+          box-sizing: border-box;
+          font-size: 16px;
+      }
+
+      .signup-form input[type="submit"] {
+          width: 150px;
+          background-color: #77a88d;
+          color: #f2f2f2;
+          padding: 12px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          text-align: center;
+          margin-top: 20px; 
+      }
+
+      .signup-form input[type="submit"]:hover {
+          background-color: #77a88d;
+      }
+
+      .signup-form p {
+          text-align: left;
+          margin-top: 15px;
+          margin-bottom: 10px;
+          font-size: 14px;
+          color: #777;
+      }
+
+      @media screen and (max-width: 500px) {
+          .container {
+              padding: 20px;
+          }
+
+          .logo {
+              max-width: 300px;
+          }
+
+          .signup-form input[type="text"],
+          .signup-form input[type="password"],
+          .signup-form input[type="email"] {
+              padding: 10px;
+              margin-bottom: 60px;
+              font-size: 14px;
+          }
+
+          .signup-form input[type="submit"] {
+              padding: 10px;
+              font-size: 14px;
+          }
+      }
+    </style>
+</head>
+<body>
+    <nav class="green-navbar">
+        <div class="logo-container">
+            <img        src="loginLogo-temp.png" alt="Logo" class="logonav">
+          </div>
+          <div class="buttons-container">
+              <button class="nav-button">題庫</button>
+              <button class="nav-button">登入</button>
+          </div>
+      </nav>
+      <div class="container">
+          <div class="left-side">
+              <a href="https://example.com">
+                  <img class="logo" src="logInLogo-temp.png" alt="Coding White Logo">
+              </a>
+              <form class="signup-form" action="" method="post">
+              </form>
+              <input type="submit" class="submit-btn" value="確認註冊">
+          </div>
+      
+          <div class="right-side">
+              <form class="signup-form" action="" method="post">
+                  <input type="text" name="username" placeholder="暱稱" required>
+                  <input type="text" name="email" placeholder="帳號" required>
+                  <input type="password" name="password" placeholder="密碼" required>
+                  <input type="password" name="confirm_password" placeholder="確認密碼" required>
+                  <input type="email" name="email" placeholder="電子信箱" required>
+              </form>
+          </div>
+      </div>
+    </body>
+    </html>      

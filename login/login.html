@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+  <title>LogIn</title>
+  <style>
+    .links-wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      max-width: 100%;
+      /* 調整此值以獲得所需的寬度 */
+      margin-left: auto;
+      margin-right: auto;
+      white-space: nowrap;
+      /* 防止換行 */
+    }
+
+    .register-wrapper {
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .forgot-wrapper {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .register-link {
+      color: gray;
+    }
+
+    .forgot-password {
+      margin-right: 40px;
+    }
+
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      transform: scale(1);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: #f2f2f2;
+      padding: 60px;
+      border-radius: 0px;
+      text-align: center;
+    }
+
+    .logo {
+      margin-bottom: 45px;
+      max-width: 600px;
+      height: auto;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 18px;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      border: 1px solid #000000;
+      box-sizing: border-box;
+      font-size: 20px;
+    }
+
+    .login-form input[type="submit"] {
+      width: 25%;
+      background-color: #77a88d;
+      color: #f2f2f2;
+      padding: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .login-form input[type="submit"]:hover {
+      background-color: #77a88d;
+    }
+
+    .login-form p {
+      text-align: left;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      font-size: 18px;
+      color: #777;
+    }
+
+    @media screen and (max-width: 700px) {
+      .container {
+        padding: 30px;
+      }
+
+      .logo {
+        max-width: 450px;
+      }
+
+      .login-form input[type="text"],
+      .login-form input[type="password"] {
+        padding: 15px;
+        margin-bottom: 90px;
+        font-size: 18px;
+      }
+
+      .login-form input[type="submit"] {
+        padding: 15px;
+        font-size: 18px;
+      }
+    }
+
+    .forgot-password {
+      color: gray;
+      margin-left: 500px margin-top: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="green-navbar">
+    <div class="logo-container">
+      <img src="loginLogo-temp.png" alt="Logo" class="logonav">
+    </div>
+    <div class="buttons-container">
+      <button class="nav-button">題庫</button>
+      <button class="nav-button">登入</button>
+    </div>
+  </nav>
+  <div class="content">
+  </div>
+  <div class="container">
+    <a href="https://youtube.com">
+      <img class="logo" src="loginLogo-temp.png" alt="Logo">
+    </a>
+    <form class="login-form" action="" method="post">
+      <input type="text" name="username" placeholder="使用者名稱" required>
+      <input type="password" name="password" placeholder="密碼" required>
+      <input type="submit" value="登入">
+      <div class="links-wrapper">
+        <p>還沒有帳號？ <a class="register-link" href="http://127.0.0.1:5500/signup/signup.html">立即註冊</a></p>
+        <div class="forgot-wrapper">
+          <a href="https://youtube.com" class="forgot-password">忘記密碼？</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="background">
+  </div>
+</body>
+
+</html>
