@@ -1,0 +1,77 @@
+<head>
+    <style>
+        #top-bar {
+            background-color: #77a88d;
+            /*設定背景顏色*/
+            height: 100px;
+            /*設定高度*/
+            width: 100%;
+            /*設定寬度為100%*/
+            position: fixed;
+            /*將位置固定在畫面頂部*/
+            top: 0;
+            /*將區塊置於頂部*/
+            left: 0;
+            /*將區塊左對齊*/
+            z-index: 999;
+            /*設定堆疊順序*/
+        }
+
+        #top-bar p {
+            color: #fff;
+            /*設定文字顏色為白色*/
+            font-size: 40px;
+            /*設定文字大小*/
+            font-family: Arial, sans-serif;
+            /*設定字型*/
+            margin: 0;
+            /*消除段落的邊距*/
+            padding: 5px;
+            /*設定段落內的填充*/
+        }
+
+        .menu {
+            float: right;
+            font-size: 30px;
+            /*添加一些間距以避免與內容重疊*/
+        }
+
+        #image {
+            position: absolute;
+            top: 120;
+            left: 0;
+        }
+
+        .img_txt {
+            color: #000;
+            position: absolute;
+            top: 500;
+            left: 1050;
+            font-size: 80px;
+
+        }
+
+        button {
+            position: absolute;
+            top: 800;
+            left: 1500;
+            font-size: 30px;
+            width: 200px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="top-bar">
+        <p class="logo">squirrel OJ</p>
+        <a href="signln.html" class="menu">登入</a>
+    </div>
+    <img id="image" border="0" alt="W3Schools" src="image.webp" width="1200" height="800">
+    <div class="img_txt">squirrel OJ<br>online judge</div>
+    <div class="button_p">
+        <button><a href="signUp.html">立即註冊</a></button>
+    </div>
+
+</body>
