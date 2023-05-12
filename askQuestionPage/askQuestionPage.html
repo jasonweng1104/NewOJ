@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>出題頁面</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var max_fields = 10; // 最多區塊數量
+			var wrapper = $(".input-output-group"); // 父元素
+			var add_button = $(".add-input-output"); // 加號按鈕
+			
+			var x = 1; // 初始區塊數量
+			$(add_button).click(function(e){
+				e.preventDefault();
+				if(x < max_fields){ // 如果區塊數量小於上限
+					x++; // 區塊數量+1
+					$(wrapper).append('<div><hr><h4>範例輸入與輸出 '+x+'</h4><a href="#" class="remove-input-output btn btn-danger btn-xs">刪除</a><br><br><div class="form-group"><label for="sample_input_'+x+'">範例輸入 '+x+'：</label><textarea id="sample_input_'+x+'" name="sample_input[]" class="form-control" rows="3"></textarea></div><div class="form-group"><label for="sample_output_'+x+'">範例輸出 '+x+'：</label><textarea id="sample_output_'+x+'" name="sample_output[]" class="form-control" rows="3"></textarea></div></div>'); // 動態生成新區塊
+				}
+			});
+			
+			$(wrapper).on("click",".remove-input-output", function(e){ // 當點擊刪除按鈕時
+				e.preventDefault();
+				$(this).parent('div').remove(); // 刪除對應的區塊
+				x--; // 區塊數量-1
+			})
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<h1>新增題目</h1>
+		<form>
+			<div class="form-group">
+				<label for="title">題目名稱：</label>
+				<textarea id="title" name="title" class="form-control" rows="1"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="explain">題目說明：</label>
+                <textarea id="explain" name="explain" class="form-control" rows="4"></textarea>
+			</div>
+			<fieldset class="input">
+                <legend>輸入</legend>
+                <div class="form-group">
+                    <label for="input">輸入說明：</label>
+                    <textarea id="input" name="input" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="output">輸出說明：</label>
+                    <textarea id="output" name="output" class="form-control" rows="3"></textarea>
+                </div>
+            </fieldset>
+            
+            <div class="input-output-group">
+			    <hr>
+			    <h4>範例輸入與輸出 1</h4>
+			    <div class="form-group">
+			    	<label for="sample_input_1">範例輸入 1：</label>
+			    	<textarea id="sample_input_1" name="sample_input[]" class="form-control" rows="3"></textarea>
+			    </div>
+			    <div class="form-group">
+			    	<label for="sample_output_1">範例輸出 1：</label>
+			    	<textarea id="sample_output_1" name="sample_output[]" class="form-control" rows="3"></textarea>
+			    </div>
+			    <a href="#" class="add-input-output btn btn-success btn-xs">新增範例輸入與輸出</a>
+		    </div>
+		
+		    <button type="submit" class="btn btn-primary">送出</button>
+	    </form>
+        <script>//不確定這段能不能使用
+                $(".btn.btn-primary").click(function(){
+                    // 將表單的資料轉換為JSON格式
+                    var form = $("#problem-form");
+                    var formData = form.serializeArray();
+                    var formObject = {};
+                    $.each(formData, function (index, field) {
+                        formObject[field.name] = field.value;
+                    });
+                    var formJSON = JSON.stringify(formObject);
+
+                    // 將表單的JSON資料輸出到瀏覽器控制台
+                    console.log(formJSON);
+                });
+          </script>  
+           
+    </div>
+</body>
+</html>
