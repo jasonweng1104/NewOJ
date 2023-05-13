@@ -1,0 +1,13 @@
+$(wrapper).append('<div>
+    <hr>
+    <div class="row">
+        <h4 class="col">範例輸入與輸出 ' + x + '</h4><a href="#"
+            class="col remove-input-output btn btn-danger btn-xs">刪除</a><br><br>
+    </div>
+    <div class="row">
+        <div class="col form-group"><label for="sample_input_' + x + '">範例輸入 ' + x + '：</label><textarea
+                id="sample_input_' + x + '" name="sample_input[]" class="form-control" rows="3"></textarea></div>
+        <div class="col form-group"><label for="sample_output_' + x + '">範例輸出 ' + x + '：</label><textarea
+                id="sample_output_' + x + '" name="sample_output[]" class="form-control" rows="3"></textarea></div>
+    </div>
+</div>'); // 動態生成新區塊
