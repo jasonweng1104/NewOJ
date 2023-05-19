@@ -5,6 +5,7 @@
 	<title>出題頁面</title>
 	<link rel="stylesheet" href="nav.css">
 	<link rel="stylesheet" type="text/css" href="footer.css">
+	<link rel="stylesheet" href="theme-toggle.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -49,6 +50,7 @@
 			/**************************************************/
 		});
 	</script>
+	<script src="theme-toggle.js"></script>
 	<style>
 		body {
 			background-color: #f2f2f2;
@@ -61,6 +63,8 @@
 		.container {
 			max-width: 800px;
 			margin-top: 40px;
+			background-color: var(--container-light-background);
+			transition: background-color 0.5s ease-in;
 		}
 
 		.green-button {
@@ -79,10 +83,20 @@
 		.green-button:hover {
 			background-color: #548c6d;
 		}
+
+		body.light-theme {
+			background-color: var(--white-background);
+			transition: background-color 0.5s ease-in;
+		}
+
+		body.dark-theme {
+			background-color: var(--indigo-background);
+			transition: background-color 0.5s ease-in;
+		}
 	</style>
 </head>
 
-<body>
+<body class="light-theme">
 	<nav class="green-navbar">
 		<div class="logo-container">
 			<img src="image/loginLogo-temp.png" alt="Logo" class="logonav">
@@ -92,6 +106,12 @@
 			<button class="nav-button">登入</button>
 		</div>
 	</nav>
+	<div class="toggle-container">
+		<input type="checkbox" id="themeToggle" class="toggle--checkbox">
+		<label for="themeToggle" class="toggle--label">
+			<span class="toggle--label-background"></span>
+		</label>
+	</div>
 	<div class="container">
 		<form>
 			<div class="row m-1">
@@ -176,6 +196,7 @@
 		</script>
 
 	</div>
+	<div style="margin-top: 200px;"></div>
 	<div id="footer">
 		<div class="big-text">開發人員</div>
 		<div class="small-text">111級工程不分系 顏少于、王淳永、翁傑聖、林承佑、徐宇辰</div>
