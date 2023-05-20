@@ -16,6 +16,7 @@
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
   <script src="theme-toggle.js"></script>
+
   <title>squirre oj</title>
   <style>
     .number-container {
@@ -43,15 +44,17 @@
       font-size: 20px;
 
     }
-    body.light-theme {
-			background-color: var(--white-background);
-			transition: background-color 0.5s ease-in;
-		}
 
-		body.dark-theme {
-			background-color: var(--indigo-background);
-			transition: background-color 0.5s ease-in;
-		}
+    body.light-theme {
+      background-color: var(--white-background);
+      transition: background-color 0.5s ease-in;
+    }
+
+    body.dark-theme {
+      background-color: var(--indigo-background);
+      transition: background-color 0.5s ease-in;
+    }
+
     .green-button {
       width: 100px;
       background-color: #77a88d;
@@ -68,10 +71,86 @@
     .green-button:hover {
       background-color: #548c6d;
     }
+
     .input-group {
-  height: 50px;
-  margin-left: 30px; 
-}
+      height: 50px;
+      padding-left:205px;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      font-family: Arial, sans-serif;
+      background-color: var(--indigo-background);
+      transition: background-color 0.5s ease-in;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 15px;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    tr:first-child {
+      border-bottom: 2px solid black;
+    }
+
+    .pagination-container {
+      text-align: right;
+      margin-bottom: 20px;
+      margin-right: 205px;
+      white-space: nowrap;
+    }
+
+
+    .page-button {
+      background-color: #a3a9a6;
+      color: #f2f2f2;
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-left: 0px;
+      /* Set this to 0 */
+      margin-right: 0px;
+      /* Set this to 0 */
+      width: 40px;
+      /* Adjust as needed */
+      height: 40px;
+      /* Adjust as needed */
+      line-height: 30px;
+      /* Adjust as needed */
+      text-align: center;
+      /* center the text horizontally */
+      box-sizing: border-box;
+      /* Add this line */
+    }
+
+    .page-button:hover {
+      background-color: #919693;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      /* This will add space between the input group and pagination */
+      align-items: center;
+      /* This will vertically center the items */
+    }
   </style>
 </head>
 
@@ -92,169 +171,74 @@
       <span class="toggle--label-background"></span>
     </label>
   </div>
-  <div class="input-group">
-    <input type="text" placeholder="輸入 ID/名稱/標籤" name="searchword">
-    <button class="green-button">搜尋</button>
+  <div class="top-bar">
+    <div class="input-group">
+      <input type="text" placeholder="輸入 ID/名稱/標籤" name="searchword">
+      <button class="green-button">搜尋</button>
+    </div>
+    <div class="pagination-container">
+      <button class="page-button" onclick="changePage(-1)">
+        < </button>
+          <button class="page-button" onclick="changePage(1)">1</button>
+          <button class="page-button" onclick="changePage(2)">2</button>
+          <button class="page-button" onclick="changePage(3)">3</button>
+          <button class="page-button" onclick="changePage(4)">4</button>
+          <button class="page-button" onclick="changePage(5)">5</button>
+          <button class="page-button" onclick="changePage(1)">></button>
+    </div>
   </div>
-  <div class="number-container">
-    <a href="https://Problems_page=1" class="number">1</a>
-    <a href="https://Problems_page=2" class="number">2</a>
-    <a href="https://Problems_page=3" class="number">3</a>
-    <a href="https://Problems_page=4" class="number">4</a>
-    <a href="https://Problems_page=5" class="number">5</a>
-  </div>
-  <hr>
-  <tr>
-    <th>
-      <div class="head_date">ID</div>
-    </th>
-    <th>
-      <div class="head_date">題目名稱</div>
-    </th>
-    <th>
-      <div class="head_date">通過率</div>
-    </th>
-    <th>
-      <div class="head_date">難度</div>
-    </th>
-    <th>
-      <div class="head_date">分類</div>
-    </th>
-    <th>
-      <div class="head_date">標籤</div>
-    </th>
-  </tr>
-  <hr>
 
-  <tr>
-    <td>
-      <div class="body_date">1</div>
-    </td>
-    <td>
-      <div class="body_date">Hello World！</div>
-    </td>
-    <td>
-      <div class="body_date">95%
-      </div>
-    </td>
-    <td>
-      <div class="body_date">Easy
-      </div>
-    </td>
-    <td>
-      <div class="body_date">基礎題庫
-      </div>
-    </td>
-    <td>
-      <div class="body_date">#print
-      </div>
-    </td>
-  </tr>
-  <br>
-  <tr>
-    <td>
-      <div class="body_date">2</div>
-    </td>
-    <td>
-      <div class="body_date">Hello World！</div>
-    </td>
-    <td>
-      <div class="body_date">95%
-      </div>
-    </td>
-    <td>
-      <div class="body_date">Easy
-      </div>
-    </td>
-    <td>
-      <div class="body_date">基礎題庫
-      </div>
-    </td>
-    <td>
-      <div class="body_date">#print
-      </div>
-    </td>
-  </tr>
-  <br>
-  <tr>
-    <td>
-      <div class="body_date">3</div>
-    </td>
-    <td>
-      <div class="body_date">Hello World！</div>
-    </td>
-    <td>
-      <div class="body_date">95%
-      </div>
-    </td>
-    <td>
-      <div class="body_date">Easy
-      </div>
-    </td>
-    <td>
-      <div class="body_date">基礎題庫
-      </div>
-    </td>
-    <td>
-      <div class="body_date">#print
-      </div>
-    </td>
-  </tr>
-  <br>
-  <tr>
-    <td>
-      <div class="body_date">4</div>
-    </td>
-    <td>
-      <div class="body_date">Hello World！</div>
-    </td>
-    <td>
-      <div class="body_date">95%
-      </div>
-    </td>
-    <td>
-      <div class="body_date">Easy
-      </div>
-    </td>
-    <td>
-      <div class="body_date">基礎題庫
-      </div>
-    </td>
-    <td>
-      <div class="body_date">#print
-      </div>
-    </td>
-  </tr>
-  <br>
-  <tr>
-    <td>
-      <div class="body_date">5</div>
-    </td>
-    <td>
-      <div class="body_date">Hello World！</div>
-    </td>
-    <td>
-      <div class="body_date">95%
-      </div>
-    </td>
-    <td>
-      <div class="body_date">Easy
-      </div>
-    </td>
-    <td>
-      <div class="body_date">基礎題庫
-      </div>
-    </td>
-    <td>
-      <div class="body_date">#print
-      </div>
-    </td>
-  </tr>
-  <br>
-  <div style="padding: 10px;">
-    第 1 頁
-    <br>
-    <a href="https://Problems_page=2">下一頁</a>
+  <div class="container">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>題目名稱</th>
+        <th>通過率</th>
+        <th>難度</th>
+        <th>分類</th>
+        <th>標籤</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Hello World！</td>
+        <td>95%</td>
+        <td>Easy</td>
+        <td>基礎題庫</td>
+        <td>#print</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Hello World！</td>
+        <td>95%</td>
+        <td>Easy</td>
+        <td>基礎題庫</td>
+        <td>#print</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Hello World！</td>
+        <td>95%</td>
+        <td>Easy</td>
+        <td>基礎題庫</td>
+        <td>#print</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Hello World！</td>
+        <td>95%</td>
+        <td>Easy</td>
+        <td>基礎題庫</td>
+        <td>#print</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Hello World！</td>
+        <td>95%</td>
+        <td>Easy</td>
+        <td>基礎題庫</td>
+        <td>#print</td>
+      </tr>
+    </table>
   </div>
   <div style="margin-top: 250px;"></div>
   <div id="footer">
