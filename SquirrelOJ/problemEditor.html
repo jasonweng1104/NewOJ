@@ -178,8 +178,9 @@
 			<div class="text-center">
 				<a href="#" id="add-hide" class="btn btn-success btn-xs">新增隱藏測資</a>
 			</div>
-		</form>
-		<script>//不確定這段能不能使用
+		</form>	
+
+		<script>
 			$(".btn.btn-primary").click(function () {
 				// 將表單的資料轉換為JSON格式
 				var form = $("#problem-form");
@@ -193,8 +194,29 @@
 				// 將表單的JSON資料輸出到瀏覽器控制台
 				console.log(formJSON);
 			});
+			/*$(".btn.btn-primary").click(function () {
+				var form = $("#problem-form");
+				var formData = form.serializeArray();
+				var formObject = {};
+				$.each(formData, function (index, field) {
+			  		formObject[field.name] = field.value;
+				});
+				var formJSON = JSON.stringify(formObject);
+		  
+				// 建立下載連結
+				var downloadLink = document.createElement("a");
+				downloadLink.href = "data:text/json;charset=utf-8," + encodeURIComponent(formJSON);
+				downloadLink.download = "form_data.json";
+		  
+				// 觸發下載
+				document.body.appendChild(downloadLink);
+				downloadLink.click();
+				document.body.removeChild(downloadLink);
+		  });*/
 		</script>
 
+		
+		  
 	</div>
 	<div style="margin-top: 200px;"></div>
 	<div id="footer">

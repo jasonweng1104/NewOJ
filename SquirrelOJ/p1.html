@@ -82,15 +82,42 @@
               $("#" + key).text(dataInput[key]);
           });
          */
-    $(document).ready(function () {
-      //調用外部json檔
-      $.getJSON("questionStorge/p0001.json", function (data) {
-        // 根据 JSON 数据替换 HTML 内容
-        Object.keys(data).forEach(function (key) {
-          $("#" + key).text(data[key]);
-        });
-      });
+
+$(document).ready(function () {
+  var jsonFilePath = ""; // 初始的 JSON 文件路径
+
+  // 服务器呼叫时更改 JSON 文件路径为其他地址
+  // 例如，将 JSON 文件路径更改为另一个地址
+  jsonFilePath = "questionStorge/p0001.json";
+
+  // 调用外部 JSON 文件并替换 HTML 内容
+  $.getJSON(jsonFilePath, function (data) {
+    // 根据 JSON 数据替换 HTML 内容
+    Object.keys(data).forEach(function (key) {
+      $("#" + key).text(data[key]);
     });
+
+    // 添加额外的例子
+    var examples = data.examples;
+    if (examples && Array.isArray(examples)) {
+      examples.forEach(function (example) {
+        var $row = $("<div class='row'></div>");
+        var $colInput = $("<div class='col box'></div>");
+        var $colOutput = $("<div class='col box'></div>");
+
+        $colInput.append("<h5>範例輸入</h5><pre>" + example.input + "</pre>");
+        $colOutput.append("<h5>範例輸出</h5><pre>" + example.output + "</pre>");
+
+        $row.append($colInput);
+        $row.append($colOutput);
+
+        $(".container").append($row);
+      });
+    }
+  });
+});
+
+
 
   </script>
 </head>
@@ -134,16 +161,6 @@
         <p id="outputDescript">這是一個範例輸出說明。</p>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col box">
-        <h5>範例輸入</h5>
-        <pre id="exInput">1 2</pre>
-      </div>
-      <div class="col box">
-        <h5>範例輸出</h5>
-        <pre id="exOutput">3</pre>
-      </div>
     </div>
 
   </div>
