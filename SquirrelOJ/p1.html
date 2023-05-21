@@ -2,9 +2,8 @@
 <html>
 
 <head>
-  <title>題目顯示頁面</title>
-  <link rel="stylesheet" href="nav.css">
-  <link rel="stylesheet" type="text/css" href="footer.css">
+  <title>題目</title>
+  <link rel="stylesheet" href="css.css">
   <link rel="stylesheet" href="theme-toggle.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -13,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
-    <script src="theme-toggle.js"></script>
+  <script src="theme-toggle.js"></script>
   <style>
     body {
       background-color: #f2f2f2;
@@ -27,8 +26,8 @@
       max-width: 800px;
       margin-top: 30px;
       max-width: 800px;
-    background-color: var(--container-light-background);
-    transition: background-color 0.5s ease-in;
+      background-color: var(--container-light-background);
+      transition: background-color 0.5s ease-in;
     }
 
     .green-button {
@@ -56,15 +55,16 @@
       margin: 5px;
       background-color: #ffffff;
     }
-    body.light-theme {
-            background-color: var(--white-background);
-            transition: background-color 0.5s ease-in;
-        }
 
-        body.dark-theme {
-            background-color: var(--indigo-background);
-            transition: background-color 0.5s ease-in;
-        }
+    body.light-theme {
+      background-color: var(--white-background);
+      transition: background-color 0.5s ease-in;
+    }
+
+    body.dark-theme {
+      background-color: var(--indigo-background);
+      transition: background-color 0.5s ease-in;
+    }
   </style>
   <script>
     /*    
@@ -83,39 +83,39 @@
           });
          */
 
-$(document).ready(function () {
-  var jsonFilePath = ""; // 初始的 JSON 文件路径
+    $(document).ready(function () {
+      var jsonFilePath = ""; // 初始的 JSON 文件路径
 
-  // 服务器呼叫时更改 JSON 文件路径为其他地址
-  // 例如，将 JSON 文件路径更改为另一个地址
-  jsonFilePath = "questionStorge/p0001.json";
+      // 服务器呼叫时更改 JSON 文件路径为其他地址
+      // 例如，将 JSON 文件路径更改为另一个地址
+      jsonFilePath = "questionStorge/p0001.json";
 
-  // 调用外部 JSON 文件并替换 HTML 内容
-  $.getJSON(jsonFilePath, function (data) {
-    // 根据 JSON 数据替换 HTML 内容
-    Object.keys(data).forEach(function (key) {
-      $("#" + key).text(data[key]);
-    });
+      // 调用外部 JSON 文件并替换 HTML 内容
+      $.getJSON(jsonFilePath, function (data) {
+        // 根据 JSON 数据替换 HTML 内容
+        Object.keys(data).forEach(function (key) {
+          $("#" + key).text(data[key]);
+        });
 
-    // 添加额外的例子
-    var examples = data.examples;
-    if (examples && Array.isArray(examples)) {
-      examples.forEach(function (example) {
-        var $row = $("<div class='row'></div>");
-        var $colInput = $("<div class='col box'></div>");
-        var $colOutput = $("<div class='col box'></div>");
+        // 添加额外的例子
+        var examples = data.examples;
+        if (examples && Array.isArray(examples)) {
+          examples.forEach(function (example) {
+            var $row = $("<div class='row'></div>");
+            var $colInput = $("<div class='col box'></div>");
+            var $colOutput = $("<div class='col box'></div>");
 
-        $colInput.append("<h5>範例輸入</h5><pre>" + example.input + "</pre>");
-        $colOutput.append("<h5>範例輸出</h5><pre>" + example.output + "</pre>");
+            $colInput.append("<h5>範例輸入</h5><pre>" + example.input + "</pre>");
+            $colOutput.append("<h5>範例輸出</h5><pre>" + example.output + "</pre>");
 
-        $row.append($colInput);
-        $row.append($colOutput);
+            $row.append($colInput);
+            $row.append($colOutput);
 
-        $(".container").append($row);
+            $(".container").append($row);
+          });
+        }
       });
-    }
-  });
-});
+    });
 
 
 
@@ -135,9 +135,9 @@ $(document).ready(function () {
   <div class="toggle-container">
     <input type="checkbox" id="themeToggle" class="toggle--checkbox">
     <label for="themeToggle" class="toggle--label">
-        <span class="toggle--label-background"></span>
+      <span class="toggle--label-background"></span>
     </label>
-</div>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col">
@@ -161,7 +161,7 @@ $(document).ready(function () {
         <p id="outputDescript">這是一個範例輸出說明。</p>
       </div>
     </div>
-    </div>
+  </div>
 
   </div>
 

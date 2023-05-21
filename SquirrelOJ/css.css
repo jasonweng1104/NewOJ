@@ -1,3 +1,4 @@
+/*header*/
 /* 通用樣式 */
 * {
     margin: 0;
@@ -47,4 +48,45 @@
 
 .nav-button:hover {
     background-color: #3a8d40;
+}
+
+/*footer*/
+#footer {
+    background-color: #517f64;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.big-text {
+    display: inline-block;
+    font-size: 1.3em;
+    border: 2px solid white;
+    padding: 10px;
+}
+
+.small-text {
+    font-size: 1em;
+    display: block;
+}
+
+.green-button {
+    max-width: 100px;
+    background-color: #77a88d;
+    color: #f2f2f2;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.green-button:hover {
+    background-color: #548c6d;
 }
