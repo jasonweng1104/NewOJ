@@ -52,75 +52,22 @@
       transition: background-color 0.5s ease-in;
     }
 
-    .input-group {
-      height: 50px;
-      padding-left: 205px;
-    }
-
-    .container {
-      width: 80%;
-      margin: 0 auto;
-      font-family: Arial, sans-serif;
-      background-color: var(--indigo-background);
-      transition: background-color 0.5s ease-in;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th,
-    td {
-      padding: 15px;
-      text-align: center;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    tr:nth-child(odd) {
-      background-color: #ffffff;
-    }
-
-    tr:first-child {
-      border-bottom: 2px solid black;
-    }
-
-    .pagination-container {
-      text-align: right;
-      margin-bottom: 20px;
-      margin-right: 205px;
-      white-space: nowrap;
-    }
-
-
     .page-button {
-      background-color: #a3a9a6;
-      color: #f2f2f2;
-      padding: 5px;
+      background-color: #e7e7e7;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 18px;
-      margin-left: 0px;
-      margin-right: 0px;
-      width: 40px;
-      height: 40px;
-      line-height: 30px;
+      font-size: 14px;
+      height: 30px;
       text-align: center;
-      box-sizing: border-box;
     }
 
     .page-button:hover {
-      background-color: #919693;
+      background-color: #c4c4c4;
     }
 
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .container {
+      width: 900px;
     }
   </style>
 </head>
@@ -142,74 +89,82 @@
       <span class="toggle--label-background"></span>
     </label>
   </div>
-  <div class="top-bar">
-    <div class="input-group">
-      <input type="text" placeholder="輸入 ID/名稱/標籤" name="searchword">
-      <button class="green-button">搜尋</button>
-    </div>
-    <div class="pagination-container">
-      <button class="page-button" onclick="changePage(-1)">
-        < </button>
-          <button class="page-button" onclick="changePage(1)">1</button>
-          <button class="page-button" onclick="changePage(2)">2</button>
-          <button class="page-button" onclick="changePage(3)">3</button>
-          <button class="page-button" onclick="changePage(4)">4</button>
-          <button class="page-button" onclick="changePage(5)">5</button>
-          <button class="page-button" onclick="changePage(1)">></button>
-    </div>
-  </div>
 
   <div class="container">
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>題目名稱</th>
-        <th>通過率</th>
-        <th>難度</th>
-        <th>分類</th>
-        <th>標籤</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Hello World！</td>
-        <td>95%</td>
-        <td>Easy</td>
-        <td>基礎題庫</td>
-        <td>#print</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Hello World！</td>
-        <td>95%</td>
-        <td>Easy</td>
-        <td>基礎題庫</td>
-        <td>#print</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Hello World！</td>
-        <td>95%</td>
-        <td>Easy</td>
-        <td>基礎題庫</td>
-        <td>#print</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Hello World！</td>
-        <td>95%</td>
-        <td>Easy</td>
-        <td>基礎題庫</td>
-        <td>#print</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Hello World！</td>
-        <td>94%</td>
-        <td>Easy</td>
-        <td>基礎題庫</td>
-        <td>#print</td>
-      </tr>
-    </table>
+    <div class="row text-center">
+      <div class="col form-group">
+        <div class="row">
+          <input type="text" class="col-8 form-control" placeholder="輸入 ID/名稱/標籤">
+          <button class="col-2 green-button">搜尋</button>
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col">
+        <div class="row">
+          <button class="col m-1 page-button" onclick="changePage(-1)">
+            < </button>
+              <button class="col m-1 page-button" onclick="changePage(1)">1</button>
+              <button class="col m-1 page-button" onclick="changePage(2)">2</button>
+              <button class="col m-1 page-button" onclick="changePage(3)">3</button>
+              <button class="col m-1 page-button" onclick="changePage(4)">4</button>
+              <button class="col m-1 page-button" onclick="changePage(5)">5</button>
+              <button class="col m-1 page-button" onclick="changePage(1)">></button>
+        </div>
+      </div>
+    </div>
+    <div class="row bg-white p-2">
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th>
+          <th>題目名稱</th>
+          <th>通過率</th>
+          <th>難度</th>
+          <th>分類</th>
+          <th>標籤</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Hello World！</td>
+          <td>95%</td>
+          <td>Easy</td>
+          <td>基礎題庫</td>
+          <td>#print</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Hello World！</td>
+          <td>95%</td>
+          <td>Easy</td>
+          <td>基礎題庫</td>
+          <td>#print</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Hello World！</td>
+          <td>95%</td>
+          <td>Easy</td>
+          <td>基礎題庫</td>
+          <td>#print</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Hello World！</td>
+          <td>95%</td>
+          <td>Easy</td>
+          <td>基礎題庫</td>
+          <td>#print</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Hello World！</td>
+          <td>94%</td>
+          <td>Easy</td>
+          <td>基礎題庫</td>
+          <td>#print</td>
+        </tr>
+      </table>
+    </div>
+
   </div>
   <div style="margin-top: 250px;"></div>
   <div id="footer">

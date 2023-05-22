@@ -15,16 +15,20 @@
     <script src="theme-toggle.js"></script>
     <title>註冊</title>
     <style>
-        body {
-            background-color: #f2f2f2;
-        }
-
         .container {
             max-width: 900px;
             margin-top: 50px;
             background-color: #f2f2f2;
             background-color: var(--container-light-background);
             transition: background-color 0.5s ease-in;
+        }
+
+        .hint {
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #777;
         }
 
         @keyframes fadeIn {
@@ -36,20 +40,10 @@
                 opacity: 1;
             }
         }
-
-        body.light-theme {
-            background-color: var(--white-background);
-            transition: background-color 0.5s ease-in;
-        }
-
-        body.dark-theme {
-            background-color: var(--indigo-background);
-            transition: background-color 0.5s ease-in;
-        }
     </style>
 </head>
 
-<body>
+<body class="light-theme">
     <nav class="green-navbar">
         <div class="logo-container">
             <img src="image/loginLogo-temp.png" alt="Logo" class="logonav">

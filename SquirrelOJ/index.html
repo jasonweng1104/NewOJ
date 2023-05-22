@@ -16,16 +16,15 @@
   <script src="theme-toggle.js"></script>
   <title>首頁</title>
   <style>
-    body {
-      background-color: #f2f2f2;
-      display: flex;
-      flex-direction: column;
-    }
-
     .container {
       max-width: 450px;
       margin-top: 30px;
       background-color: #f2f2f2;
+    }
+
+    body,
+    .container {
+      transition: background-color 0.5s ease;
     }
 
     @keyframes fadeIn {
@@ -36,15 +35,6 @@
       100% {
         opacity: 1;
       }
-    }
-
-    body,
-    .container {
-      transition: background-color 0.5s ease;
-    }
-
-    .theme-link {
-      transition: color 0.5s ease;
     }
   </style>
 </head>
