@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>出題</title>
+	<link rel="stylesheet" href="css.css">
+	<link rel="stylesheet" href="theme-toggle.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
+
+	<script>
+		$(document).ready(function () {
+			var max_fields = 10; // 最多區塊數量
+			var x = 1; // 範例測資區塊數量
+			var y = 1; // 隱藏測資區塊數量
+			/*********************範例測資*********************/
+			$("#add-example").click(function (e) {
+				e.preventDefault();
+				if (x < max_fields) { // 如果區塊數量小於上限
+					x++; // 區塊數量+1
+					$("#example").append('<div><hr><div class="row"><h4 class="col">範例測資 ' + x + '</h4><a href="#" class="col remove-example btn btn-danger btn-xs">刪除</a><br><br></div><div class="row"><div class="col form-group"><label for="sample_input_' + x + '">範例輸入 ' + x + '：</label><textarea id="sample_input_' + x + '" name="sample_input[]" class="form-control" rows="3"></textarea></div><div class="col form-group"><label for="sample_output_' + x + '">範例輸出 ' + x + '：</label><textarea id="sample_output_' + x + '" name="sample_output[]" class="form-control" rows="3"></textarea></div></div></div>'); // 動態生成新區塊
+				}
+			});
+			$("#example").on("click", ".remove-example", function (e) { // 當點擊刪除按鈕時
+				e.preventDefault();
+				$(this).parent().parent().remove(); // 刪除對應的區塊
+				x--; // 區塊數量-1
+			})
+			/*********************隱藏測資*********************/
+			$("#add-hide").click(function (e) {
+				e.preventDefault();
+				if (y < max_fields) { // 如果區塊數量小於上限
+					y++; // 區塊數量+1
+					$("#hide").append('<div><hr><div class="row"><h4 class="col">隱藏測資 ' + y + '</h4><a href="#" class="col remove-hide btn btn-danger btn-xs">刪除</a><br><br></div><div class="row"><div class="col form-group"><label for="sample_input_' + y + '">測資輸入 ' + y + '：</label><textarea id="sample_input_' + y + '" name="sample_input[]" class="form-control" rows="3"></textarea></div><div class="col form-group"><label for="sample_output_' + y + '">測資輸出 ' + y + '：</label><textarea id="sample_output_' + y + '" name="sample_output[]" class="form-control" rows="3"></textarea></div></div></div>'); // 動態生成新區塊
+				}
+			});
+
+			$("#hide").on("click", ".remove-hide", function (e) { // 當點擊刪除按鈕時
+				e.preventDefault();
+				$(this).parent().parent().remove(); // 刪除對應的區塊
+				y--; // 區塊數量-1
+			})
+			/**************************************************/
+		});
+	</script>
+	<script src="theme-toggle.js"></script>
+	<style>
+		.container {
+			max-width: 800px;
+			margin-top: 40px;
+			background-color: var(--container-light-background);
+			transition: background-color 0.5s ease-in;
+		}
+
+		body.light-theme {
+			background-color: var(--white-background);
+			transition: background-color 0.5s ease-in;
+		}
+
+		body.dark-theme {
+			background-color: var(--indigo-background);
+			transition: background-color 0.5s ease-in;
+		}
+	</style>
+</head>
+
+<body class="light-theme">
+	<nav class="green-navbar">
+		<div class="logo-container">
+			<img src="image/loginLogo-temp.png" alt="Logo" class="logonav">
+		</div>
+		<div class="buttons-container">
+			<a class="nav-button" href="problems.html">題庫</a>
+			<button class="nav-button">登入</button>
+		</div>
+	</nav>
+	<div class="toggle-container">
+		<input type="checkbox" id="themeToggle" class="toggle--checkbox">
+		<label for="themeToggle" class="toggle--label">
+			<span class="toggle--label-background"></span>
+		</label>
+	</div>
+	<div class="container">
+		<form>
+			<div class="row m-1">
+				<div class="form-group">
+					<input id="title" name="title" class="form-control" style="font-size: 24px;" placeholder="題目名稱">
+				</div>
+				<div class="col text-right">
+					<button type="submit" class="green-button">確認送出</button>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<textarea id="explain" name="explain" class="form-control" placeholder="題目說明" rows="4"></textarea>
+			</div>
+			<fieldset class="input">
+				<div class="row">
+					<div class="col form-group">
+						<label for="input">輸入說明：</label>
+						<textarea id="input" name="input" class="form-control" rows="3"></textarea>
+					</div>
+					<div class="col form-group">
+						<label for="output">輸出說明：</label>
+						<textarea id="output" name="output" class="form-control" rows="3"></textarea>
+					</div>
+				</div>
+
+			</fieldset>
+			<!--範例測資-->
+			<div id="example">
+				<hr>
+				<h4>範例測資 1</h4>
+				<div class="row">
+					<div class="col form-group">
+						<label for="sample_input_1">範例輸入 1：</label>
+						<textarea id="sample_input_1" name="sample_input[]" class="form-control" rows="3"></textarea>
+					</div>
+					<div class="col form-group">
+						<label for="sample_output_1">範例輸出 1：</label>
+						<textarea id="sample_output_1" name="sample_output[]" class="form-control" rows="3"></textarea>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="text-center">
+				<a href="#" id="add-example" class="btn btn-success btn-xs">新增範例測資</a>
+			</div>
+			<!--隱藏測資-->
+			<div id="hide">
+				<hr>
+				<h4>隱藏測資 1</h4>
+				<div class="row">
+					<div class="col form-group">
+						<label for="sample_input_1">測資輸入 1：</label>
+						<textarea id="sample_input_1" name="sample_input[]" class="form-control" rows="3"></textarea>
+					</div>
+					<div class="col form-group">
+						<label for="sample_output_1">測資輸出 1：</label>
+						<textarea id="sample_output_1" name="sample_output[]" class="form-control" rows="3"></textarea>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="text-center">
+				<a href="#" id="add-hide" class="btn btn-success btn-xs">新增隱藏測資</a>
+			</div>
+		</form>
+
+		<script>
+			$(".btn.btn-primary").click(function () {
+				// 將表單的資料轉換為JSON格式
+				var form = $("#problem-form");
+				var formData = form.serializeArray();
+				var formObject = {};
+				$.each(formData, function (index, field) {
+					formObject[field.name] = field.value;
+				});
+				var formJSON = JSON.stringify(formObject);
+
+				// 將表單的JSON資料輸出到瀏覽器控制台
+				console.log(formJSON);
+			});
+			/*$(".btn.btn-primary").click(function () {
+				var form = $("#problem-form");
+				var formData = form.serializeArray();
+				var formObject = {};
+				$.each(formData, function (index, field) {
+						formObject[field.name] = field.value;
+				});
+				var formJSON = JSON.stringify(formObject);
+		  
+				// 建立下載連結
+				var downloadLink = document.createElement("a");
+				downloadLink.href = "data:text/json;charset=utf-8," + encodeURIComponent(formJSON);
+				downloadLink.download = "form_data.json";
+		  
+				// 觸發下載
+				document.body.appendChild(downloadLink);
+				downloadLink.click();
+				document.body.removeChild(downloadLink);
+		  });*/
+		</script>
+
+
+
+	</div>
+	<div style="margin-top: 200px;"></div>
+	<div id="footer">
+		<div class="big-text">開發人員</div>
+		<div class="small-text">111級工程不分系 顏少于、王淳永、翁傑聖、林承佑、徐宇辰</div>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+:root {
+    --container-light-background: #f2f2f2; 
+    --container-dark-background: #808080; 
+    --white-background: #f2f2f2; /* change to gray */
+    --indigo-background: #808080; /* change to gray */
+    --blue-color: #f2f2f2;
+    --yellow-background: #ffbf00;
+    --yellow-border: #f5eb71;
+  
+    --indigo-border: #808080;
+    --indigo-color: #808080;
+    --white: #f2f2f2;
+  }
+
+  body.light-theme {
+    background-color: var(--white-background);
+  }
+  
+  body.dark-theme {
+    background-color: var(--indigo-background);
+  }
+  
+
+.light-theme .container {
+  background-color: var(--white-background);
+}
+
+.dark-theme .container {
+  background-color: var(--indigo-background);
+}
+  /* toggle button CSS */
+  .toggle--checkbox {
+    display: none;
+  }
+
+  .toggle--checkbox:checked + .toggle--label {
+    background: var(--indigo-color);
+    border-color: var(--indigo-border);
+  }
+
+  .toggle--label {
+    width: 80px;
+    height: 80px;
+    background: var(--blue-color);
+    border-radius: 50%;
+    border: 5px solid var(--blue-border);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in;
+    cursor: pointer;
+  }
+
+  .toggle--label:before {
+    content: "";
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--yellow-background);
+    transition: all 0.5s ease-in;
+  }
+
+  .toggle--checkbox:checked + .toggle--label:before {
+    background: var(--white);
+  }
+  .toggle-container {
+    position: absolute;
+    right: 20px;
+    top: 70px;
+    z-index: 1; 
+  }
+
+  .light-theme .container {
+    background-color: var(--white-background);
+  }
+  
+  .dark-theme .container {
+    background-color: var(--indigo-background);
+  }
+  .nav-space {
+    height: 60px; 
+  }
+  

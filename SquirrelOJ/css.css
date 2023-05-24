@@ -1,0 +1,92 @@
+/*header*/
+/* 通用樣式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 導航欄樣式 */
+.green-navbar {
+    background-color: #77a88d;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.logo-container {
+    order: 0;
+}
+
+.logonav {
+    width: 100px;
+    /* 根據需要調整Logo大小 */
+    height: auto;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    order: 1;
+}
+
+.nav-button {
+    font-weight: bold;
+    background-color: #77a88d;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    /* 調整字體大小 */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #3a8d40;
+}
+
+/*footer*/
+#footer {
+    background-color: #517f64;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.big-text {
+    display: inline-block;
+    font-size: 1.3em;
+    border: 2px solid white;
+    padding: 10px;
+}
+
+.small-text {
+    font-size: 1em;
+    display: block;
+}
+
+.green-button {
+    max-width: 100px;
+    background-color: #77a88d;
+    color: #f2f2f2;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.green-button:hover {
+    background-color: #548c6d;
+}
