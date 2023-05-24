@@ -57,7 +57,7 @@
       <img src="image/loginLogo-temp.png" alt="Logo" class="logonav">
     </div>
     <div class="buttons-container">
-      <button class="nav-button">題庫</button>
+      <a class="nav-button" href="problems.html">題庫</a>
       <button class="nav-button">登入</button>
     </div>
   </nav>
@@ -70,12 +70,12 @@
   </div>
   <div class="text-center container" id="contentContainer">
     <img class="w-100" src="image/loginLogo-temp.png" alt="Logo">
-    <form action="" method="post">
+    <form action="/myClass" method="get">
       <div class="form-group">
-        <input type="text" class="form-control" id="username" placeholder="帳號">
+        <input type="text" class="form-control" id="username" name="username" placeholder="帳號">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" id="password" placeholder="密碼">
+        <input type="password" class="form-control" id="password" name="password" placeholder="密碼">
       </div>
       <button type="submit" class="green-button">登入</button>
       <div class="hint">
