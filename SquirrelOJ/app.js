@@ -41,7 +41,7 @@ app.post('/problemEditor/submit', async (req, res) => {
   //將出題內容丟上資料庫
 });
 //資料庫
-app.post('/login/submit', async (req, res) => {
+app.get('/login/submit', async (req, res) => {
   try {
     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('已成功連接到 MongoDB 資料庫2');
@@ -62,7 +62,7 @@ app.post('/login/submit', async (req, res) => {
     var user = await User.findOne({ username, password }).exec();
 
     if (user) {
-      res.redirect(`http://localhost:3000/myClass.html`);
+      res.redirect("http://localhost:"+port+"/myClass.html");
     } else {
       res.send('帳號或密碼錯誤');
     }
