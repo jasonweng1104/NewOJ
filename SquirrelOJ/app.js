@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var app = express();
-var port = 3100;
+var port = 8000;
 var path = __dirname + '/views/'; //因為我把html都放在views裡面
 var uri = 'mongodb://127.0.0.1:27017/mydata';
 
@@ -31,6 +31,14 @@ app.get('/problems.html', (req, res) => {
 });
 app.get('/register.html', (req, res) => {
   res.sendFile(path + 'register.html');
+});
+app.post('/p/submit/', async (req, res) => {
+  //送出答案按鈕
+  //將答案程式碼拿去判分
+});
+app.post('/problemEditor/submit', async (req, res) => {
+  //送出出題按鈕
+  //將出題內容丟上資料庫
 });
 //資料庫
 app.post('/login/submit', async (req, res) => {
