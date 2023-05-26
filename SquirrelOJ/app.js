@@ -1,42 +1,47 @@
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-
-const uri = 'mongodb://127.0.0.1:27017/mydata';
-const dbName = 'mydate';
-
-const app = express();
-const port = 3000;
+var express = require('express');
+var mongoose = require('mongoose');
+var app = express();
+var port = 8000;
+var path = __dirname + '/views/'; //因為我把html都放在views裡面
+var uri = 'mongodb://127.0.0.1:27017/mydata';
 
 // 設定靜態檔案目錄
-app.use(express.static(path.join(__dirname)));
-
+app.use(express.static('public'));
 // 初始GET
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path + 'index.html');
 });
-//讀取題庫資料庫的大綱題目
-//app.get('/problems/page={page}',(req,res) => {
-
-//})
-//讀取題庫資料庫的詳細題目
-//app.get('/p{page)',(req,res) => {
-
-//})
-//讀取個人檔案資料庫
-//app.get('/myPage/id={id}',(req,res) => {
-
-//})
-//讀取個人頁面資料庫
-//app.get('/myClass/id={id}',(req,res) => {
-
-//})
-//新增題目到題目資料庫
-//app.post('/problemEditor',(req,res) => {
-
-//})
-// 判斷輸入
-app.get('/myClass', async (req, res) => {
+app.get('/login.html', (req, res) => {
+  res.sendFile(path + 'login.html');
+});
+app.get('/myClass.html', (req, res) => {
+  res.sendFile(path + 'myClass.html');
+});
+app.get('/myPage.html', (req, res) => {
+  res.sendFile(path + 'myPage.html');
+});
+app.get('/p.html', (req, res) => {
+  res.sendFile(path + 'p.html');
+});
+app.get('/problemEditor.html', (req, res) => {
+  res.sendFile(path + 'problemEditor.html');
+});
+app.get('/problems.html', (req, res) => {
+  res.sendFile(path + 'problems.html');
+});
+app.get('/register.html', (req, res) => {
+  res.sendFile(path + 'register.html');
+});
+app.post('/p/submit/', async (req, res) => {
+  //送出答案按鈕
+  //將答案程式碼拿去判分
+});
+app.post('/problemEditor/submit', async (req, res) => {
+  //送出出題按鈕
+  //將出題內容丟上資料庫
+});
+//資料庫
+app.post('/login/submit', async (req, res) => {
   try {
     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('已成功連接到 MongoDB 資料庫2');
@@ -44,7 +49,7 @@ app.get('/myClass', async (req, res) => {
     if (mongoose.models['user']) {
       // 如果模型已經存在，可以使用已經定義的模型
       delete mongoose.models['user'];
-     
+
     }
     // 定義新的模型
     var User = mongoose.model('user', {
@@ -69,7 +74,7 @@ app.get('/myClass', async (req, res) => {
 
 
 // 把新用戶存入資料庫
-app.post('/register', express.urlencoded({ extended: true }), (req, res) => {
+app.post('/register/submit', express.urlencoded({ extended: true }), (req, res) => {
   const { id, username, password, password2, email } = req.body;
   const user = { id, username, password, password2, email };
   mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -95,5 +100,5 @@ app.post('/register', express.urlencoded({ extended: true }), (req, res) => {
 
 // 啟動伺服器
 app.listen(port, () => {
-  console.log(`伺服器正在監聽 http://localhost:${port}/login`);
+  console.log(`伺服器正在監聽 http://localhost:${port}/`);
 });
