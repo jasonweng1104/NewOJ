@@ -1,0 +1,4 @@
+for i in range(4):
+    x=int(input())
+    print(x*2,end=" ")
+    print(x*3)
