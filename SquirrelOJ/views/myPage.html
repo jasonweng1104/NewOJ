@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+    <script src="control.js"></script>
     <script src="theme-toggle.js"></script>
     <style>
         body {
@@ -22,7 +23,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin-top: 30px;
             background-color: var(--container-light-background);
             transition: background-color 0.5s ease-in;
@@ -72,10 +73,7 @@
         <div class="logo-container">
             <img src="image/loginLogo-temp.png" alt="Logo" class="logonav">
         </div>
-        <div class="buttons-container">
-            <a class="nav-button" href="problems.html">題庫</a>
-            <button class="nav-button">登入</button>
-        </div>
+        <div class="buttons-container"></div>
     </nav>
     <div class="toggle-container">
         <input type="checkbox" id="themeToggle" class="toggle--checkbox">
@@ -99,11 +97,10 @@
                 </div>
                 <img src="image/percen.png" height="300" width="auto" class="p-5 m-3">
             </div>
-            <div class="col-1"></div>
             <!--解題紀錄-->
-            <div class="col-6">
-                <div class="row my-2">
-                    <div class="col room">
+            <div class="col-7">
+                <div class="row m-2 bg-white">
+                    <div class="col m-4">
                         <h4>解題紀錄</h4>
                         <div class="numbers">
                             <span>1</span>
@@ -129,29 +126,47 @@
                         </div>
                     </div>
                 </div>
-                <div class="row my-2">
-                    <div class="col room">
+                <div class="row m-2 bg-white">
+                    <div class="col m-4">
                         <h4>送出紀錄</h4>
-                        <div>
-                            <p style="padding-left:20px;">ID</p>
-                            <p>題目名稱</p>
-                            <p>答題狀況</p>
-                            <p>時間</p>
-                        </div>
-                        <div class="recode">
-                            <p>1</p>
-                            <p>Hello World!</p>
-                            <p>AC</p>
-                            <p>2023/5/20 17:35</p>
-                            <p>1</p>
-                            <p>Hello World!</p>
-                            <p>WA</p>
-                            <p>2023/5/20 17:35</p>
-                            <p>1</p>
-                            <p>Hello World!</p>
-                            <p>WA</p>
-                            <p>2023/5/20 17:35</p>
-                        </div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>ID</th>
+                                <th>題目名稱</th>
+                                <th>答題狀況</th>
+                                <th>時間</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Hello World!</td>
+                                <td>AC</td>
+                                <td>2023/5/20 17:35</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Hello World!</td>
+                                <td>WA</td>
+                                <td>2023/5/20 17:35</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Hello World!</td>
+                                <td>WA</td>
+                                <td>2023/5/20 17:35</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Hello World!</td>
+                                <td>WA</td>
+                                <td>2023/5/20 17:35</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Hello World!</td>
+                                <td>WA</td>
+                                <td>2023/5/20 17:35</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
