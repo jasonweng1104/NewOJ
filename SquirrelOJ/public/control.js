@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log("HI");
     const gotoLoginHTML = '<button class="nav-button goto-login">登入</button>';
     const gotoProblemsHTML = '<button class="nav-button goto-problems">題庫</button>';
     $(".buttons-container").append(gotoLoginHTML);

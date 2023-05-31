@@ -17,36 +17,86 @@
 	<script>
 		$(document).ready(function () {
 			var max_fields = 10; // 最多區塊數量
-			var x = 1; // 範例測資區塊數量
-			var y = 1; // 隱藏測資區塊數量
-			/*********************範例測資*********************/
+			/******隱藏測資 新增、刪除*******/
+			var ex_num = 1;
 			$("#add-example").click(function (e) {
 				e.preventDefault();
-				if (x < max_fields) { // 如果區塊數量小於上限
-					x++; // 區塊數量+1
-					$("#example").append('<div><hr><div class="row"><h4 class="col">範例測資 ' + x + '</h4><a href="#" class="col remove-example btn btn-danger btn-xs">刪除</a><br><br></div><div class="row"><div class="col form-group"><label for="sample_input_' + x + '">範例輸入 ' + x + '：</label><textarea id="sample_input_' + x + '" name="sample_input[]" class="form-control" rows="3"></textarea></div><div class="col form-group"><label for="sample_output_' + x + '">範例輸出 ' + x + '：</label><textarea id="sample_output_' + x + '" name="sample_output[]" class="form-control" rows="3"></textarea></div></div></div>'); // 動態生成新區塊
-				}
+				if (ex_num + 1 > max_fields)
+					return;
+				ex_num++;
+				var txt = '<div class="ex-box"><hr>'
+					+ '<div class="row">'
+					+ '<h4 class="col-8 title">範例測資#' + ex_num + '</h4>'
+					+ '<a href="#" class="col-4 remove-example btn btn-danger btn-xs">刪除</a>'
+					+ '</div>'
+					+ '<div class="row">'
+					+ '<div class="col form-group">'
+					+ '<p>測資輸入：</p>'
+					+ '<textarea id="ex-input-' + ex_num + '" class="input form-control" rows="3"></textarea>'
+					+ '</div>'
+					+ '<div class="col form-group">'
+					+ '<p>測資輸出：</p>'
+					+ '<textarea id="ex-output-' + ex_num + '" class="input form-control" rows="3"></textarea>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>';
+				$("#example").append(txt);
 			});
-			$("#example").on("click", ".remove-example", function (e) { // 當點擊刪除按鈕時
+			$("#example").on("click", ".remove-example", function (e) {
 				e.preventDefault();
-				$(this).parent().parent().remove(); // 刪除對應的區塊
-				x--; // 區塊數量-1
-			})
-			/*********************隱藏測資*********************/
+				$(this).parent().parent().remove();
+				ex_num--;
+				exampleReNumder(e);
+			},)
+			function exampleReNumder(e) {
+				e.preventDefault();
+				$("#example .ex-box").each(function (index, element) {
+					console.log(index);
+					$(this).find(".title").text("範例測資#" + (index + 1));
+					$(this).find(".input").attr("id", "ex-input-" + (index + 1));
+					$(this).find(".output").attr("id", "ex-output-" + (index + 1));
+				});
+			};
+			/******隱藏測資 新增、刪除*******/
+			var hd_num = 1;
 			$("#add-hide").click(function (e) {
 				e.preventDefault();
-				if (y < max_fields) { // 如果區塊數量小於上限
-					y++; // 區塊數量+1
-					$("#hide").append('<div><hr><div class="row"><h4 class="col">隱藏測資 ' + y + '</h4><a href="#" class="col remove-hide btn btn-danger btn-xs">刪除</a><br><br></div><div class="row"><div class="col form-group"><label for="sample_input_' + y + '">測資輸入 ' + y + '：</label><textarea id="sample_input_' + y + '" name="sample_input[]" class="form-control" rows="3"></textarea></div><div class="col form-group"><label for="sample_output_' + y + '">測資輸出 ' + y + '：</label><textarea id="sample_output_' + y + '" name="sample_output[]" class="form-control" rows="3"></textarea></div></div></div>'); // 動態生成新區塊
-				}
+				if (hd_num + 1 > max_fields)
+					return;
+				hd_num++;
+				var txt = '<div class="hd-box"><hr>'
+					+ '<div class="row">'
+					+ '<h4 class="col-8 title">隱藏測資#' + hd_num + '</h4>'
+					+ '<a href="#" class="col-4 remove-hide btn btn-danger btn-xs">刪除</a>'
+					+ '</div>'
+					+ '<div class="row">'
+					+ '<div class="col form-group">'
+					+ '<p>測資輸入：</p>'
+					+ '<textarea id="hd-input-' + hd_num + '" class="input form-control" rows="3"></textarea>'
+					+ '</div>'
+					+ '<div class="col form-group">'
+					+ '<p>測資輸出：</p>'
+					+ '<textarea id="hd-output-' + hd_num + '" class="input form-control" rows="3"></textarea>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>';
+				$("#hide").append(txt);
 			});
-
-			$("#hide").on("click", ".remove-hide", function (e) { // 當點擊刪除按鈕時
+			$("#hide").on("click", ".remove-hide", function (e) {
 				e.preventDefault();
-				$(this).parent().parent().remove(); // 刪除對應的區塊
-				y--; // 區塊數量-1
-			})
-			/**************************************************/
+				$(this).parent().parent().remove();
+				hd_num--;
+				hideReNumder(e);
+			},)
+			function hideReNumder(e) {
+				e.preventDefault();
+				$("#hide .hd-box").each(function (index, element) {
+					console.log(index);
+					$(this).find(".title").text("隱藏測資#" + (index + 1));
+					$(this).find(".input").attr("id", "hd-input-" + (index + 1));
+					$(this).find(".output").attr("id", "hd-output-" + (index + 1));
+				});
+			};
 		});
 	</script>
 	<script src="theme-toggle.js"></script>
@@ -102,96 +152,74 @@
 			<div class="form-group">
 				<textarea id="explain" name="explain" class="form-control" placeholder="題目說明" rows="4"></textarea>
 			</div>
-			<fieldset class="input">
-				<div class="row">
-					<div class="col form-group">
-						<label for="input">輸入說明：</label>
-						<textarea id="input" name="input" class="form-control" rows="3"></textarea>
-					</div>
-					<div class="col form-group">
-						<label for="output">輸出說明：</label>
-						<textarea id="output" name="output" class="form-control" rows="3"></textarea>
-					</div>
+			<div class="row">
+				<div class="col form-group">
+					<label for="INPUT">輸入說明：</label>
+					<textarea id="INPUT" name="input" class="form-control" rows="3"></textarea>
 				</div>
-
-			</fieldset>
+				<div class="col form-group">
+					<label for="OUTPUT">輸出說明：</label>
+					<textarea id="OUTPUT" name="output" class="form-control" rows="3"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col form-group">
+					<label for="CLASS">分類:</label>
+					<textarea id="CLASS" name="input" class="form-control" rows="3"></textarea>
+				</div>
+				<div class="col form-group">
+					<label for="TAG">標籤:</label>
+					<textarea id="TAG" name="output" class="form-control" rows="3"></textarea>
+				</div>
+			</div>
 			<!--範例測資-->
 			<div id="example">
-				<hr>
-				<h4>範例測資 1</h4>
-				<div class="row">
-					<div class="col form-group">
-						<label for="sample_input_1">範例輸入 1：</label>
-						<textarea id="sample_input_1" name="sample_input[]" class="form-control" rows="3"></textarea>
+				<div class="ex-box">
+					<hr>
+					<div class="row">
+						<h4 class="col-8 title">範例測資#1</h4>
+						<a href="#" class="col-4 remove-example btn btn-danger btn-xs">刪除</a>
 					</div>
-					<div class="col form-group">
-						<label for="sample_output_1">範例輸出 1：</label>
-						<textarea id="sample_output_1" name="sample_output[]" class="form-control" rows="3"></textarea>
+					<div class="row">
+						<div class="col form-group input-box">
+							<p>測資輸入：</p>
+							<textarea id="ex-input-1" class="input form-control" rows="3"></textarea>
+						</div>
+						<div class="col form-group">
+							<p>測資輸出：</p>
+							<textarea id="ex-output-1" class="output form-control" rows="3"></textarea>
+						</div>
 					</div>
 				</div>
 			</div>
-			<hr>
 			<div class="text-center">
-				<a href="#" id="add-example" class="btn btn-success btn-xs">新增範例測資</a>
+				<a id="add-example" class="btn btn-success btn-xs">新增範例測資</a>
 			</div>
 			<!--隱藏測資-->
 			<div id="hide">
-				<hr>
-				<h4>隱藏測資 1</h4>
-				<div class="row">
-					<div class="col form-group">
-						<label for="sample_input_1">測資輸入 1：</label>
-						<textarea id="sample_input_1" name="sample_input[]" class="form-control" rows="3"></textarea>
+				<div class="hd-box">
+					<hr>
+					<div class="row">
+						<h4 class="col-8 title">隱藏測資#1</h4>
+						<a href="#" class="col-4 remove-hide btn btn-danger btn-xs">刪除</a>
 					</div>
-					<div class="col form-group">
-						<label for="sample_output_1">測資輸出 1：</label>
-						<textarea id="sample_output_1" name="sample_output[]" class="form-control" rows="3"></textarea>
+					<div class="row">
+						<div class="col form-group input-box">
+							<p>測資輸入：</p>
+							<textarea id="hd-input-1" class="input form-control" rows="3"></textarea>
+						</div>
+						<div class="col form-group">
+							<p>測資輸出：</p>
+							<textarea id="hd-output-1" class="output form-control" rows="3"></textarea>
+						</div>
 					</div>
 				</div>
 			</div>
 			<hr>
 			<div class="text-center">
-				<a href="#" id="add-hide" class="btn btn-success btn-xs">新增隱藏測資</a>
+				<a id="add-hide" class="btn btn-success btn-xs">新增隱藏測資</a>
 			</div>
 		</form>
-
-		<script>
-			$(".btn.btn-primary").click(function () {
-				// 將表單的資料轉換為JSON格式
-				var form = $("#problem-form");
-				var formData = form.serializeArray();
-				var formObject = {};
-				$.each(formData, function (index, field) {
-					formObject[field.name] = field.value;
-				});
-				var formJSON = JSON.stringify(formObject);
-
-				// 將表單的JSON資料輸出到瀏覽器控制台
-				console.log(formJSON);
-			});
-			/*$(".btn.btn-primary").click(function () {
-				var form = $("#problem-form");
-				var formData = form.serializeArray();
-				var formObject = {};
-				$.each(formData, function (index, field) {
-						formObject[field.name] = field.value;
-				});
-				var formJSON = JSON.stringify(formObject);
-		  
-				// 建立下載連結
-				var downloadLink = document.createElement("a");
-				downloadLink.href = "data:text/json;charset=utf-8," + encodeURIComponent(formJSON);
-				downloadLink.download = "form_data.json";
-		  
-				// 觸發下載
-				document.body.appendChild(downloadLink);
-				downloadLink.click();
-				document.body.removeChild(downloadLink);
-		  });*/
-		</script>
-
-
-
 	</div>
 	<div style="margin-top: 200px;"></div>
 	<div id="footer">
