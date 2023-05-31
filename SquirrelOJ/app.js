@@ -1,12 +1,15 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var app = express();
-var port = 8000;
+var port = 8100;
 var path = __dirname + '/views/'; //因為我把html都放在views裡面
 var uri = 'mongodb://127.0.0.1:27017/mydata';
 
 // 設定靜態檔案目錄
 app.use(express.static('public'));
+//解碼方式
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // 初始GET
 app.get('/', (req, res) => {
   res.sendFile(path + 'index.html');
@@ -38,6 +41,7 @@ app.post('/p/submit/', async (req, res) => {
 });
 app.post('/problemEditor/submit', async (req, res) => {
   //送出出題按鈕
+  console.log("HI" + res);
   //將出題內容丟上資料庫
 });
 //資料庫
@@ -62,7 +66,7 @@ app.get('/login/submit', async (req, res) => {
     var user = await User.findOne({ username, password }).exec();
 
     if (user) {
-      res.redirect("http://localhost:"+port+"/myClass.html");
+      res.redirect("http://localhost:" + port + "/myClass.html");
     } else {
       res.send('帳號或密碼錯誤');
     }

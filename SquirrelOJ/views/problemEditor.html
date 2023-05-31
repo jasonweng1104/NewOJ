@@ -7,9 +7,8 @@
 	<link rel="stylesheet" href="theme-toggle.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"
+		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 		crossorigin="anonymous"></script>
@@ -51,7 +50,6 @@
 			function exampleReNumder(e) {
 				e.preventDefault();
 				$("#example .ex-box").each(function (index, element) {
-					console.log(index);
 					$(this).find(".title").text("範例測資#" + (index + 1));
 					$(this).find(".input").attr("id", "ex-input-" + (index + 1));
 					$(this).find(".output").attr("id", "ex-output-" + (index + 1));
@@ -91,12 +89,51 @@
 			function hideReNumder(e) {
 				e.preventDefault();
 				$("#hide .hd-box").each(function (index, element) {
-					console.log(index);
 					$(this).find(".title").text("隱藏測資#" + (index + 1));
 					$(this).find(".input").attr("id", "hd-input-" + (index + 1));
 					$(this).find(".output").attr("id", "hd-output-" + (index + 1));
 				});
 			};
+			/******上傳*******/
+			$('#submit').on('click', function (event) {
+				event.preventDefault(); // 防止表單自動提交
+				var ex_array = [], hd_array = [];
+				for (var i = 1; i <= ex_num; i++)
+					ex_array.push([$("#ex-input-" + i).val(), $("#ex-output-" + i).val()]);
+				for (var i = 1; i <= hd_num; i++)
+					hd_array.push([$("#hd-input-" + i).val(), $("#hd-output-" + i).val()]);
+				// 獲取表單數據
+				var formData = {
+					TITLE: $('#TITLE').val(),
+					EXPLAIN: $('#EXPLAIN').val(),
+					INPUT: $('#INPUT').val(),
+					OUTPUT: $('#OUTPUT').val(),
+					CLASS: $('#CLASS').val(),
+					TAG: $('#TAG').val(),
+					ex_num: ex_num,
+					hd_num: hd_num,
+					ex_array: ex_array,
+					hd_array: hd_array
+				};
+				console.log(formData);
+				// 發送 AJAX POST 請求
+				$.ajax({
+					type: 'POST',
+					url: '/problemEditor/submit', // 替換為你的伺服器端處理請求的 URL
+					data: formData,
+					dataType: 'json',
+					encode: true
+				})
+					.done(function (data) {
+						// 請求成功時的回調函數
+						// 在這裡處理伺服器返回的數據
+						//console.log(data.message);
+					})
+					.fail(function () {
+						// 請求失敗時的回調函數
+						console.log('Error. Please try again.');
+					});
+			});
 		});
 	</script>
 	<script src="theme-toggle.js"></script>
@@ -138,88 +175,84 @@
 		</label>
 	</div>
 	<div class="container">
-		<form>
-			<div class="row m-1">
-				<div class="form-group">
-					<input id="title" name="title" class="form-control" style="font-size: 24px;" placeholder="題目名稱">
-				</div>
-				<div class="col text-right">
-					<button type="submit" class="green-button">確認送出</button>
-				</div>
-			</div>
-
-
+		<div class="row m-1">
 			<div class="form-group">
-				<textarea id="explain" name="explain" class="form-control" placeholder="題目說明" rows="4"></textarea>
+				<input id="TITLE" class="form-control" style="font-size: 24px;" placeholder="題目名稱">
 			</div>
-			<div class="row">
-				<div class="col form-group">
-					<label for="INPUT">輸入說明：</label>
-					<textarea id="INPUT" name="input" class="form-control" rows="3"></textarea>
-				</div>
-				<div class="col form-group">
-					<label for="OUTPUT">輸出說明：</label>
-					<textarea id="OUTPUT" name="output" class="form-control" rows="3"></textarea>
-				</div>
+			<div class="col text-right">
+				<button id="submit" class="green-button">確認送出</button>
 			</div>
-			<div class="row">
-				<div class="col form-group">
-					<label for="CLASS">分類:</label>
-					<textarea id="CLASS" name="input" class="form-control" rows="3"></textarea>
-				</div>
-				<div class="col form-group">
-					<label for="TAG">標籤:</label>
-					<textarea id="TAG" name="output" class="form-control" rows="3"></textarea>
-				</div>
+		</div>
+		<div class="form-group">
+			<textarea id="EXPLAIN" class="form-control" placeholder="題目說明" rows="4"></textarea>
+		</div>
+		<div class="row">
+			<div class="col form-group">
+				<label for="INPUT">輸入說明：</label>
+				<textarea id="INPUT" name="input" class="form-control" rows="3"></textarea>
 			</div>
-			<!--範例測資-->
-			<div id="example">
-				<div class="ex-box">
-					<hr>
-					<div class="row">
-						<h4 class="col-8 title">範例測資#1</h4>
-						<a href="#" class="col-4 remove-example btn btn-danger btn-xs">刪除</a>
+			<div class="col form-group">
+				<label for="OUTPUT">輸出說明：</label>
+				<textarea id="OUTPUT" name="output" class="form-control" rows="3"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col form-group">
+				<label for="CLASS">分類:</label>
+				<textarea id="CLASS" name="input" class="form-control" rows="3"></textarea>
+			</div>
+			<div class="col form-group">
+				<label for="TAG">標籤:</label>
+				<textarea id="TAG" name="output" class="form-control" rows="3"></textarea>
+			</div>
+		</div>
+		<!--範例測資-->
+		<div id="example" data-num="1">
+			<div class="ex-box">
+				<hr>
+				<div class="row">
+					<h4 class="col-8 title">範例測資#1</h4>
+					<a href="#" class="col-4 remove-example btn btn-danger btn-xs">刪除</a>
+				</div>
+				<div class="row">
+					<div class="col form-group input-box">
+						<p>測資輸入：</p>
+						<textarea id="ex-input-1" class="input form-control" rows="3"></textarea>
 					</div>
-					<div class="row">
-						<div class="col form-group input-box">
-							<p>測資輸入：</p>
-							<textarea id="ex-input-1" class="input form-control" rows="3"></textarea>
-						</div>
-						<div class="col form-group">
-							<p>測資輸出：</p>
-							<textarea id="ex-output-1" class="output form-control" rows="3"></textarea>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="text-center">
-				<a id="add-example" class="btn btn-success btn-xs">新增範例測資</a>
-			</div>
-			<!--隱藏測資-->
-			<div id="hide">
-				<div class="hd-box">
-					<hr>
-					<div class="row">
-						<h4 class="col-8 title">隱藏測資#1</h4>
-						<a href="#" class="col-4 remove-hide btn btn-danger btn-xs">刪除</a>
-					</div>
-					<div class="row">
-						<div class="col form-group input-box">
-							<p>測資輸入：</p>
-							<textarea id="hd-input-1" class="input form-control" rows="3"></textarea>
-						</div>
-						<div class="col form-group">
-							<p>測資輸出：</p>
-							<textarea id="hd-output-1" class="output form-control" rows="3"></textarea>
-						</div>
+					<div class="col form-group">
+						<p>測資輸出：</p>
+						<textarea id="ex-output-1" class="output form-control" rows="3"></textarea>
 					</div>
 				</div>
 			</div>
-			<hr>
-			<div class="text-center">
-				<a id="add-hide" class="btn btn-success btn-xs">新增隱藏測資</a>
+		</div>
+		<div class="text-center">
+			<a id="add-example" class="btn btn-success btn-xs">新增範例測資</a>
+		</div>
+		<!--隱藏測資-->
+		<div id="hide" data-num="1">
+			<div class="hd-box">
+				<hr>
+				<div class="row">
+					<h4 class="col-8 title">隱藏測資#1</h4>
+					<a href="#" class="col-4 remove-hide btn btn-danger btn-xs">刪除</a>
+				</div>
+				<div class="row">
+					<div class="col form-group input-box">
+						<p>測資輸入：</p>
+						<textarea id="hd-input-1" class="input form-control" rows="3"></textarea>
+					</div>
+					<div class="col form-group">
+						<p>測資輸出：</p>
+						<textarea id="hd-output-1" class="output form-control" rows="3"></textarea>
+					</div>
+				</div>
 			</div>
-		</form>
+		</div>
+		<hr>
+		<div class="text-center">
+			<a id="add-hide" class="btn btn-success btn-xs">新增隱藏測資</a>
+		</div>
 	</div>
 	<div style="margin-top: 200px;"></div>
 	<div id="footer">
