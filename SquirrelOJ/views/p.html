@@ -14,6 +14,7 @@
     crossorigin="anonymous"></script>
   <script src="control.js"></script>
   <script src="theme-toggle.js"></script>
+  <script src="p.js"></script>
   <style>
     .container {
       max-width: 800px;
@@ -42,60 +43,6 @@
       transition: background-color 0.5s ease-in;
     }
   </style>
-  <script>
-    /*    
-        // JSON 数据 測試用
-          var dataInput={
-            "questionID":"新內容",
-            "questionDescript":"新內容",
-            "inputDescript":"新內容",
-            "outputDescript":"新內容",
-            "exInput":"新內容",
-            "exOutput":"新內容",
-          };
-        // 根据 JSON 数据替换 HTML 内容
-          Object.keys(dataInput).forEach(function(key) {
-              $("#" + key).text(dataInput[key]);
-          });
-         */
-
-    $(document).ready(function () {
-      var jsonFilePath = ""; // 初始的 JSON 文件路径
-
-      // 服务器呼叫时更改 JSON 文件路径为其他地址
-      // 例如，将 JSON 文件路径更改为另一个地址
-      jsonFilePath = "questionStorge/p0001.json";
-
-      // 调用外部 JSON 文件并替换 HTML 内容
-      $.getJSON(jsonFilePath, function (data) {
-        // 根据 JSON 数据替换 HTML 内容
-        Object.keys(data).forEach(function (key) {
-          $("#" + key).text(data[key]);
-        });
-
-        // 添加额外的例子
-        var examples = data.examples;
-        if (examples && Array.isArray(examples)) {
-          examples.forEach(function (example) {
-            var $row = $("<div class='row'></div>");
-            var $colInput = $("<div class='col box'></div>");
-            var $colOutput = $("<div class='col box'></div>");
-
-            $colInput.append("<h5>範例輸入</h5><pre>" + example.input + "</pre>");
-            $colOutput.append("<h5>範例輸出</h5><pre>" + example.output + "</pre>");
-
-            $row.append($colInput);
-            $row.append($colOutput);
-
-            $(".container").append($row);
-          });
-        }
-      });
-    });
-
-
-
-  </script>
 </head>
 
 <body class="light-theme">
@@ -114,28 +61,27 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h2 id="questionID">p1.Hello world!!</h2>
+        <h2 id="pTITLE">p1.Hello world!!</h2>
       </div>
       <button type="submit" class="col-2 green-button" data-toggle="modal" data-target="#myModal">上傳程式碼</button>
     </div>
     <div class="row">
       <div class="col box">
         <h5>題目說明</h5>
-        <p id="questionDescript">這是一個範例題目說明。</p>
+        <p id="pEXPLAIN">這是一個範例題目說明。</p>
       </div>
     </div>
     <div class="row">
       <div class="col box">
         <h5>輸入說明</h5>
-        <p id="inputDescript">這是一個範例輸入說明。</p>
+        <p id="pINPUT">這是一個輸入說明。</p>
       </div>
       <div class="col box">
         <h5>輸出說明</h5>
-        <p id="outputDescript">這是一個範例輸出說明。</p>
+        <p id="pOUTPUT">這是一個輸出說明。</p>
       </div>
     </div>
-  </div>
-
+    <!--這裡開始放範例測資-->
   </div>
 
   <!-- 互動式方格 -->

@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var app = express();
-var port = 8100;
+var port = 3001;
 var path = __dirname + '/views/'; //因為我把html都放在views裡面
 var uri = 'mongodb://127.0.0.1:27017/mydata';
 
@@ -23,8 +23,9 @@ app.get('/myClass.html', (req, res) => {
 app.get('/myPage.html', (req, res) => {
   res.sendFile(path + 'myPage.html');
 });
-app.get('/p.html', (req, res) => {
+app.get('/p.html', async (req, res) => {
   res.sendFile(path + 'p.html');
+  console.log(req.query.ID);
 });
 app.get('/problemEditor.html', (req, res) => {
   res.sendFile(path + 'problemEditor.html');
@@ -39,11 +40,53 @@ app.post('/p/submit/', async (req, res) => {
   //送出答案按鈕
   //將答案程式碼拿去判分
 });
+/*****************出題與印題*************/
+const Schema = mongoose.Schema;
+const problemSchema = new Schema({
+  id: Number,
+  TITLE: String,
+  EXPLAIN: String,
+  INPUT: String,
+  OUTPUT: String,
+  CLASS: String,
+  TAG: String,
+  ex_num: Number,
+  hd_num: Number,
+  ex_array: [[String]],
+  hd_array: [[String]]
+});
+app.get('/p/getProblem/:ID', async (req, res) => {
+  await mongoose.connect(uri);
+  console.log('已成功連接到 MongoDB 資料庫2');
+  // 搜索数据并提取变量
+  const problemId = req.params.ID; // 要搜索的问题 ID
+  const Problem = new mongoose.model('problem', problemSchema);
+  try {
+    const problem = await Problem.findById(problemId);
+    if (problem) {
+      res.json(problem);
+    } else {
+      res.status(404).json({ error: 'Problem not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 app.post('/problemEditor/submit', async (req, res) => {
   //送出出題按鈕
-  console.log("HI" + res);
+  await mongoose.connect(uri);
+  console.log('已成功連接到 MongoDB 資料庫2');
+  const Problem = mongoose.model('problem', problemSchema);
   //將出題內容丟上資料庫
+  const problemDoc = new Problem(req.body);
+  problemDoc.save().then(saveDoc => {
+    console.log('文件已保存' + saveDoc);
+  }).catch(error => {
+    console.log('文件保存失敗' + error);
+  });
 });
+/******************************************/
 //資料庫
 app.get('/login/submit', async (req, res) => {
   try {
@@ -75,7 +118,6 @@ app.get('/login/submit', async (req, res) => {
     res.status(500).send('無法連線至資料庫');
   }
 });
-
 
 // 把新用戶存入資料庫
 app.post('/register/submit', express.urlencoded({ extended: true }), (req, res) => {
