@@ -1,4 +1,6 @@
-for i in range(4):
-    x=int(input())
-    print(x*2,end=" ")
-    print(x*3)
+def fib(n):                         
+    if n > 1:                       
+        return fib(n-1) + fib(n-2)  
+    return n
+for i in range(38):
+    print(fib(i),end=" ")
