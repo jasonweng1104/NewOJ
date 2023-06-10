@@ -45,6 +45,7 @@ $(document).ready(function () {
             success: function (response) {
                 alert('处理成功');
                 // 在这里处理服务器返回的响应
+                window.location.href = '/myPage.html';
             },
             error: function () {
                 console.log('处理出错，请重试');

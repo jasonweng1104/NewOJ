@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+    <script src="myPage.js"></script>
     <script src="control.js"></script>
     <script src="theme-toggle.js"></script>
     <style>
@@ -22,7 +23,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin-top: 30px;
             background-color: var(--container-light-background);
             transition: background-color 0.5s ease-in;
@@ -128,43 +129,14 @@
                 <div class="row m-2 bg-white">
                     <div class="col m-4">
                         <h4>送出紀錄</h4>
-                        <table class="table table-striped">
+                        <table id="submitTable" class="table table-striped">
                             <tr>
                                 <th>ID</th>
                                 <th>題目名稱</th>
                                 <th>答題狀況</th>
                                 <th>時間</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Hello World!</td>
-                                <td>AC</td>
-                                <td>2023/5/20 17:35</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Hello World!</td>
-                                <td>WA</td>
-                                <td>2023/5/20 17:35</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Hello World!</td>
-                                <td>WA</td>
-                                <td>2023/5/20 17:35</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Hello World!</td>
-                                <td>WA</td>
-                                <td>2023/5/20 17:35</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Hello World!</td>
-                                <td>WA</td>
-                                <td>2023/5/20 17:35</td>
-                            </tr>
+
                         </table>
                     </div>
                 </div>

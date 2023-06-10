@@ -47,13 +47,11 @@ $(document).ready(async function () {
         console.log("register被點擊了！");
     });
     $(".goto-logout").on("click", async function () {
-        //登出鈕在這裡
-        // 调用函数以删除名为`token`的cookie
         await $.ajax({
             url: '/logout/submit',
             method: 'GET'
         });
-        location.reload();
+        window.location.href = "/login.html";
         console.log("logout被點擊了！");
     });
     $(".goto-problems").on("click", function () {
