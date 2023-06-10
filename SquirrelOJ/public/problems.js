@@ -21,6 +21,7 @@ $(document).ready(function () {
                     + '</tr>';
                 $('table').append(txt);
             });
+            //刪除按鈕
         },
         error: function (xhr, status, err) {
             console.log(err);

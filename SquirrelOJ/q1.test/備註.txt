@@ -1,7 +1,0 @@
-1.執行完judge.py後會自動產生code_user.py檔，並將code.txt的內容寫入其中
-2.程式碼、測資、解答都不支援中文
-
-程式碼：code.txt
-輸入(測資)：input.txt
-答案：answer.txt
-

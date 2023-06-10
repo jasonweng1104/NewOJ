@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log("進入p.js")
     var url = window.location.search;
     var param = new URLSearchParams(url);
     var _id = param.get('ID');
@@ -32,5 +31,25 @@ $(document).ready(function () {
             // Handle any errors
             console.error(error);
         }
+    });
+    $('#submit').click(() => {
+        // 将程式码和 ID 作为数据发送到服务器
+        console.log($('#code').val());
+        $.ajax({
+            method: 'POST',
+            url: '/processProblem',
+            data: {
+                code: $('#code').val(),
+                id: _id
+            },
+            success: function (response) {
+                alert('处理成功');
+                // 在这里处理服务器返回的响应
+            },
+            error: function () {
+                console.log('处理出错，请重试');
+            }
+        });
+
     });
 });

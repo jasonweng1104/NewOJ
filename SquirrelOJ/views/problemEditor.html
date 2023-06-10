@@ -121,18 +121,16 @@
 					type: 'POST',
 					url: '/problemEditor/submit', // 替換為你的伺服器端處理請求的 URL
 					data: formData,
-					dataType: 'json',
-					encode: true
-				})
-					.done(function (data) {
-						// 請求成功時的回調函數
-						// 在這裡處理伺服器返回的數據
-						//console.log(data.message);
-					})
-					.fail(function () {
+					encode: true,
+					success: function () {
+						alert('資料成功送出!');
+						window.location.href = '/problems.html';
+					},
+					error: function () {
 						// 請求失敗時的回調函數
 						console.log('Error. Please try again.');
-					});
+					}
+				});
 			});
 		});
 	</script>
