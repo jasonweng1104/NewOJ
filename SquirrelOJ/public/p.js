@@ -1,7 +1,16 @@
+
 $(document).ready(function () {
     var url = window.location.search;
     var param = new URLSearchParams(url);
     var _id = param.get('ID');
+    console.log(document.cookie);
+    $.ajax({
+        url: '/checkSession',
+        method: 'POST',
+        success: () => {
+            $('#pTITLE').parent().parent().append('<button type="submit" class="col-2 green-button" data-toggle="modal" data-target="#myModal">上傳程式碼</button>');
+        }
+    });
     $.ajax({
         url: '/p/getProblem/' + _id, // Replace with your server-side endpoint URL
         method: 'GET',
@@ -43,12 +52,12 @@ $(document).ready(function () {
                 id: _id
             },
             success: function (response) {
-                alert('处理成功');
+                alert('成功送出!!!');
                 // 在这里处理服务器返回的响应
                 window.location.href = '/myPage.html';
             },
             error: function () {
-                console.log('处理出错，请重试');
+                console.log('錯誤');
             }
         });
 

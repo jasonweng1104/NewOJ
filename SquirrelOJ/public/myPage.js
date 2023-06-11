@@ -18,6 +18,7 @@ $(document).ready(() => {
             });
 
             // 示例：遍历 JU_array 数组
+
             response.JU_array.forEach(function (juArray) {
                 console.log(juArray); // 对每个 JU_array 进行相应处理
                 var txt = '<tr>'

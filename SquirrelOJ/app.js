@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 //登入session
 app.use(session({
   secret: 'secret',
-  cookie: { maxAge: 99999 },
+  cookie: { maxAge: 9999999 },
   resave: false,
   saveUninitialized: true
 }));
@@ -27,17 +27,23 @@ app.get('/', (req, res) => {
   res.sendFile(path + 'index.html');
 });
 app.get('/myClass.html', (req, res) => {
-  res.sendFile(path + 'myClass.html');
+  if (req.session.name)
+    res.chdir(path + 'myClass.html');
+  res.sendFile(path + 'login.html');
 });
 app.get('/myPage.html', (req, res) => {
-  res.sendFile(path + 'myPage.html');
+  if (req.session.name)
+    res.chdir(path + 'myPage.html');
+  res.sendFile(path + 'login.html');
 });
 app.get('/p.html', async (req, res) => {
   res.sendFile(path + 'p.html');
   console.log(req.query.ID);
 });
 app.get('/problemEditor.html', (req, res) => {
-  res.sendFile(path + 'problemEditor.html');
+  if (req.session.name)
+    res.chdir(path + 'problemEditor.html');
+  res.sendFile(path + 'login.html');
 });
 app.get('/problems.html', (req, res) => {
   res.sendFile(path + 'problems.html');
@@ -113,7 +119,11 @@ app.post('/problems/getAll', async function (req, res) {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
+app.post('/checkSession', (req, res) => {
+  if (req.session.name)
+    res.status(200).end('');
+  res.status(500).end('');
+});
 const util = require('util');
 const execPromise = util.promisify(require('child_process').exec);
 
