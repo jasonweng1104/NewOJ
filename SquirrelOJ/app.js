@@ -27,14 +27,15 @@ app.get('/', (req, res) => {
   res.sendFile(path + 'index.html');
 });
 app.get('/myClass.html', (req, res) => {
+  console.log(req.session.name);
   if (req.session.name)
-    res.chdir(path + 'myClass.html');
-  res.sendFile(path + 'login.html');
+    res.sendFile(path + 'myClass.html');
+  else res.redirect('/login.html');
 });
 app.get('/myPage.html', (req, res) => {
   if (req.session.name)
-    res.chdir(path + 'myPage.html');
-  res.sendFile(path + 'login.html');
+    res.sendFile(path + 'myPage.html');
+  else res.redirect('/login.html');
 });
 app.get('/p.html', async (req, res) => {
   res.sendFile(path + 'p.html');
@@ -42,8 +43,8 @@ app.get('/p.html', async (req, res) => {
 });
 app.get('/problemEditor.html', (req, res) => {
   if (req.session.name)
-    res.chdir(path + 'problemEditor.html');
-  res.sendFile(path + 'login.html');
+    res.sendFile(path + 'problemEditor.html');
+  else res.redirect('/login.html');
 });
 app.get('/problems.html', (req, res) => {
   res.sendFile(path + 'problems.html');
@@ -51,11 +52,6 @@ app.get('/problems.html', (req, res) => {
 app.get('/register.html', (req, res) => {
   res.sendFile(path + 'register.html');
 });
-app.post('/p/submit/', async (req, res) => {
-  //送出答案按鈕
-  //將答案程式碼拿去判分
-});
-
 /*****************出題與印題*************/
 const Schema = mongoose.Schema;
 const problemSchema = new Schema({
@@ -180,14 +176,20 @@ app.post('/processProblem', async (req, res) => {
         return; // 终止循环
       }
     }
-    const time = new Date();
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1; // 月份從0開始，需要加1
+    var day = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var time = year + '/' + month + '/' + day + ' ' + hour + ':' + minute;
     if (ACflag) {
       console.log("我是AC人");
-      userDoc.JU_array.push([problemDoc._id, problemDoc.TITLE, "AC", time]);
+      userDoc.JU_array.push([problemDoc._id, problemDoc.TITLE, "<p id='AC'>AC</p>", time]);
       userDoc.AC_ids.push(problemDoc._id);
     } else {
       console.log("我是WA人");
-      userDoc.JU_array.push([problemDoc._id, problemDoc.TITLE, "WA", time]);
+      userDoc.JU_array.push([problemDoc._id, problemDoc.TITLE, "<p id='WA'>WA</p>", time]);
     }
     userDoc.save();
     res.status(200).send('处理问题文档成功');
@@ -214,7 +216,7 @@ app.get('/logout/submit', (req, res) => {
 app.get('/login.html', (req, res) => {
   // 如果有 token Cookie，直接進入個人頁面
   if (req.session.name)
-    res.sendFile(path + 'problems.html');
+    res.redirect('/problems.html');
   else
     res.sendFile(path + 'login.html');
 });
@@ -236,6 +238,7 @@ app.post('/login/submit', async (req, res) => {
       //設session
       req.session.name = newUser.name;
       req.session._id = newUser._id;
+      req.session.email = newUser.email;
       res.redirect("/problems.html");
     } else {
       res.send('帳號或密碼錯誤');
@@ -245,13 +248,9 @@ app.post('/login/submit', async (req, res) => {
     res.status(500).send('無法連線至資料庫');
   }
 });
-app.post('/session/getname', (req, res) => {
-  if (req.session.name)
-    res.json({ name: req.session.name });
-  else
-    res.json({ name: false });
+app.post('/session/getAll', (req, res) => {
+  res.status(200).json({ name: req.session.name, email: req.session.email });
 });
-
 /**************個人網站渲染****************/
 app.post('/myPage/getAll', async (req, res) => {
   try {

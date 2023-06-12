@@ -65,6 +65,16 @@
             bottom: 0;
             left: 0;
         }
+
+        #AC {
+            color: rgb(0, 154, 0);
+            margin: 0px;
+        }
+
+        #WA {
+            color: red;
+            margin: 0px;
+        }
     </style>
 </head>
 
@@ -89,7 +99,10 @@
                     <div class="col-5">
                         <img src="image/class1.png" class="w-100">
                     </div>
-                    <div class="col-7 my-3 text-break">王淳永#2934IJH<br>12345678@gmail.com</div>
+                    <div class="col-7 my-3 text-break">
+                        <p id="name" class="m-0 p-0">王淳永</p>
+                        <p id="email" class="m-0 p-0">12345678@gmail.com</p>
+                    </div>
                 </div>
                 <div class="m-4 text-break">我是享永，這批好淳~</div>
                 <div class="px-4">
@@ -129,9 +142,9 @@
                 <div class="row m-2 bg-white">
                     <div class="col m-4">
                         <h4>送出紀錄</h4>
-                        <table id="submitTable" class="table table-striped">
+                        <table id="submitTable" class="table table-striped text-center">
                             <tr>
-                                <th>ID</th>
+                                <th>序號</th>
                                 <th>題目名稱</th>
                                 <th>答題狀況</th>
                                 <th>時間</th>

@@ -8,7 +8,7 @@ $(document).ready(() => {
             // 继续处理用户数据...
 
             // 示例：将用户名、邮箱等信息显示在页面上
-            $('#username').text(response.username);
+            $('#name').text(response.name);
             $('#email').text(response.email);
             // 可以根据需要继续设置其他字段的值
 
@@ -19,20 +19,20 @@ $(document).ready(() => {
 
             // 示例：遍历 JU_array 数组
 
-            response.JU_array.forEach(function (juArray) {
+            var juArray = response.JU_array;
+            for (var i = juArray.length - 1; i >= 0; i--) {
                 console.log(juArray); // 对每个 JU_array 进行相应处理
                 var txt = '<tr>'
-                    + '<td>' + juArray[0] + '</td>'
-                    + '<td>' + juArray[1] + '</td>'
-                    + '<td>' + juArray[2] + '</td>'
-                    + '<td>' + juArray[3] + '</td>'
+                    + '<td>' + (juArray.length - i) + '</td>'
+                    + '<td>' + juArray[i][1] + '</td>'
+                    + '<td>' + juArray[i][2] + '</td>'
+                    + '<td>' + juArray[i][3] + '</td>'
                     + '</tr>';
                 $('#submitTable').append(txt);
-            });
+            }
         },
         error: function () {
             console.log('处理出错，请重试');
         }
     });
-
 });

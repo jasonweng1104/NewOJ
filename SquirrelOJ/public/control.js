@@ -6,7 +6,7 @@ $(document).ready(async function () {
     const gotoProblemEditorHTML = '<button class="nav-button goto-problemEditor">出題</button>';
     //判斷是否登入
     await $.ajax({
-        url: '/session/getname',
+        url: '/session/getAll',
         method: 'post',
         success: (res) => {
             console.log(res.name);
